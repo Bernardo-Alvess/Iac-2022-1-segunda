@@ -18,25 +18,37 @@ function decimalToBases(numero, base){
     var result = "";
     var i = 0;
     var resto = 0;
+    let isHex = false;
 
     while (i == 0){
 
         resto = parseInt(dividendo) % base;
-        result += decimalToHex(resto).toString();
+
+        //console.log(resto);
+        if(base === 16){
+            resto = decimalToHex(resto)
+            isHex = true;
+        }
+
+        result += resto.toString();
         dividendo = parseInt(dividendo / base);
 
         if (dividendo < base){
             i++;
-            result += decimalToHex(dividendo);
+            if(isHex){
+                result += decimalToHex(dividendo);
+            }else{
+                result += dividendo;
+            }
+            
         }
-        
     }
 
     return reverse(result);
 }
 
 function reverse(result){
-
+    
     var arr = result.split('');
     var resultFinal = '';
     for (i = arr.length - 1; i >= 0; i--) {
@@ -47,8 +59,8 @@ function reverse(result){
 }
 
 function decimalToHex(num){
-
     var valor = '';
+
     switch (num) {
         case 10:
             valor = 'A';

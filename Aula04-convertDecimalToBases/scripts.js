@@ -12,63 +12,67 @@
 //alerta: temos q considerar somente números inteiros
 //dividendo = 10
 //result = 0101
-function decimalToBinary(numero, base){
-    var dividendo =  numero;
+function decimalToBases(numero, base){
+
+    var dividendo = numero;
     var result = "";
     var i = 0;
     var resto = 0;
 
-    while (i == 0) {
+    while (i == 0){
+
         resto = parseInt(dividendo) % base;
-        //console.log(resto);
-        if(base === 16){
-            resto = decimalToHex(resto)
-        }
-
-        result += resto.toString();
+        result += decimalToHex(resto).toString();
         dividendo = parseInt(dividendo / base);
-      
-        if(dividendo < base){
-            i++;
-            result+=decimalToHex(dividendo); //Essa aqui
-        }
-    }
-     return reverse(result);
-}
-function reverse(result){
-   var arr = result.split('');
-   var resultFinal = '';
-   for(i = arr.length - 1; i >= 0; i-- ){
-    resultFinal += arr[i];
-   }
 
-  return resultFinal; 
+        if (dividendo < base){
+            i++;
+            result += decimalToHex(dividendo);
+        }
+        
+    }
+
+    return reverse(result);
+}
+
+function reverse(result){
+
+    var arr = result.split('');
+    var resultFinal = '';
+    for (i = arr.length - 1; i >= 0; i--) {
+        resultFinal += arr[i];
+    }
+
+    return resultFinal;
 }
 
 function decimalToHex(num){
-    console.log(num);
-    var valor = 0;
+
+    var valor = '';
     switch (num) {
         case 10:
-            valor= 'A';
+            valor = 'A';
             break;
         case 11:
-            valor= "B";
+            valor = "B";
             break;
         case 12:
-            valor= "C";
+            valor = "C";
             break;
         case 13:
-            valor= "D";
+            valor = "D";
             break;
         case 14:
-            valor= "E";
+            valor = "E";
             break;
         case 15:
-            valor= "F";
+            valor = "F";
+            break;
+        case 0:
             break;
         default:
             valor = num;
+            break;
     }
 
     return valor;
